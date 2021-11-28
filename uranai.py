@@ -11,8 +11,8 @@ def chat(text, **kw):  #チャット用の関数（ここを書き換える）
   return 'ほ' * n
 
 # アイコンの指定
-BOT_ICON = 'https://2.bp.blogspot.com/-mRJKwyORJkQ/Wn1ZTOBrszI/AAAAAAABKKs/Bg5yjLL9RYwmfUM0pEkBA3Ky3ui0IOZWQCLcBGAs/s800/animal_smile_inu.png'
-YOUR_ICON = 'https://4.bp.blogspot.com/-SC6_6x7MQnc/Wn1ZUkdcPxI/AAAAAAABKK8/qqHVlc8E7lEGsEwJ_J8H6Gp9RvfhTX67wCLcBGAs/s800/animal_smile_neko.png'
+BOT_ICON = 'http://3.bp.blogspot.com/-uwk2hDWNFNk/VJF_NS2NijI/AAAAAAAAp0E/AL_QvmKEDzU/s800/animalface_penguin.png'
+YOUR_ICON = 'http://3.bp.blogspot.com/-To8tA3yiE0k/VJF_QawmPdI/AAAAAAAAp0w/oihka8c4k90/s800/animalface_usagi.png'
 
 def run_chat(chat = chat, start='占いするよ', **kw):
 
@@ -252,13 +252,21 @@ def myuranai(input_text):
   if 'name' in frame and 'birthday' not in frame:
     frame['asking'] = 'birthday' # 誕生日をたずねる    
     return 'あなたの誕生日は？'
+  
+  if 'name' in frame and 'birthday' and 'name1' not in frame:
+    frame['asking'] = 'name' # 名前をたずねる  
+    return '相性を占いたい人の名前は？'
+  
+  if 'name' in frame and 'birthday' and 'name1' and 'birthday1' not in frame:
+    frame['asking'] = 'birthday' # 誕生日をたずねる    
+    return '相性を占いたい人の誕生日は？'
 
   if 'name' in frame and 'birthday' in frame:
     # 占います
-    number = hash(frame['name']+frame['birthday']) % 10
+    number = hash(frame['birthday']+frame['birthday1']) % 10
     if number > 5:
-      return 'あなたの運勢は大吉'
-    return 'あなたの運勢は吉'
+      return 'お相手との相性はとっっってもよい♡'
+    return 'お相手との相性は70％！ お菓子あげたら90％になるよ！'
 
   return output_text
 
